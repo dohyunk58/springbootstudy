@@ -11,4 +11,13 @@ public class JUnitTest {
         int sum = 3;
         Assertions.assertEquals(sum, a + b);
     }
+
+//    @DisplayName("1 + 3는 3이다.")
+//    @Test
+//    public void junitFailedTest() {
+//        int a = 1;
+//        int b = 3;
+//        int sum = 3;
+//        Assertions.assertEquals(sum, a + b);
+//    }
 }
