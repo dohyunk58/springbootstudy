@@ -1,4 +1,11 @@
 spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+
+  h2:
+    console:
+      enabled: true
+
   jpa:
     # 전송 쿼리 확인
     show-sql: true
