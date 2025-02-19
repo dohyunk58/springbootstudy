@@ -3,13 +3,11 @@ package so.dohyunk58.springbootstudy.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import so.dohyunk58.springbootstudy.domain.Article;
 import so.dohyunk58.springbootstudy.dto.AddArticleRequest;
 import so.dohyunk58.springbootstudy.dto.ArticleResponse;
+import so.dohyunk58.springbootstudy.dto.UpdateArticleRequest;
 import so.dohyunk58.springbootstudy.service.BlogService;
 
 import java.util.List;
@@ -40,5 +38,34 @@ public class BlogApiController {
 
         return ResponseEntity.ok()
                 .body(articles);
+    }
+
+    // id로 글 하나를 GET 요청할 때 Article의 요소를 반환한다.
+    @GetMapping("/api/articles/{id}")
+    // url에서 id 값 추출
+    public ResponseEntity<ArticleResponse> findAricle(@PathVariable long id) {
+        Article article = blogService.findById(id);
+
+        return ResponseEntity.ok()
+                .body(new ArticleResponse(article));
+    }
+
+    // id로 DELETE 요청시 delete 메소드 호출
+    @DeleteMapping("api/articles/{id}")
+    public ResponseEntity<Void> deleteArticle(@PathVariable long id) {
+        blogService.delete(id);
+
+        return ResponseEntity.ok()
+                .build();
+    }
+
+    // id로 원하는 글의 title과 content를 수정하는 update() 메소드 호출
+    @PutMapping("api/articles/{id}")
+    public ResponseEntity<Article> updateArticle(@PathVariable long id,
+                     @RequestBody UpdateArticleRequest request) {
+        Article updatedArticle = blogService.update(id, request);
+
+        return ResponseEntity.ok()
+                .body(updatedArticle);
     }
 }
