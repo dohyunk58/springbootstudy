@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import so.dohyunk58.springbootstudy.domain.Article;
 import so.dohyunk58.springbootstudy.dto.ArticleListViewResponse;
+import so.dohyunk58.springbootstudy.dto.ArticleViewResponse;
 import so.dohyunk58.springbootstudy.service.BlogService;
 
 import java.util.List;
@@ -26,14 +27,14 @@ public class BlogViewController {
 
         return "articleList";
     }
-    /*
+
     @GetMapping("/articles/{id}")
     public String getArticle(@PathVariable Long id, Model model) {
         Article article = blogService.findById(id);
         model.addAttribute("article", new ArticleViewResponse(article));
         return "article";
     }
-
+/*
     @GetMapping("/new-article")
     public String newArticle(@RequestParam(required = false) Long id, Model model) {
         if (id == null) {
