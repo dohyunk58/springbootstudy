@@ -34,17 +34,18 @@ public class BlogViewController {
         model.addAttribute("article", new ArticleViewResponse(article));
         return "article";
     }
-/*
+
+    // 생성, 수정 화면을 위한 뷰 컨틀롤러
     @GetMapping("/new-article")
     public String newArticle(@RequestParam(required = false) Long id, Model model) {
+        //  id가 없는 경우 글을 생성한다
         if (id == null) {
             model.addAttribute("article", new ArticleViewResponse());
-        } else {
+        } else { // id가 있는 경우 id의 글을 수정한다
             Article article = blogService.findById(id);
             model.addAttribute("article", new ArticleViewResponse(article));
         }
 
         return "newArticle";
     }
-     */
 }
